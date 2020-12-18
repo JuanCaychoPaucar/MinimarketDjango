@@ -1,0 +1,69 @@
+Desplegaremos el proyecto en Heroku utilizando nuestro repositorio en GitHub
+
+GITHUB
+1) Crear un repositorio en GitHub
+2) En este caso el nombre es: MinimarketDjango
+3) Agregamos una descripcion: API de Minimarkets realizado en DjangoRestFramework y desplegado en Heroku
+4) Podemos marcarlo Public o Private, no afecta a Heroku
+5) Marcamos: (son opcionales)
+    Add .gitignore => python
+    Choose a licence => MIT
+6) Crear el repositorio
+7) Clic en Code
+8) Copiar
+9) Vamos a nuestra carpeta donde se encuentran nuestros proyectos de Heroku (D:\TECSUP\HEROKU)
+10) En la barra de direcciones del explorador de archivos, borrar todo y escribir : cmd
+11) Se abrira la consola de windows
+12) Comando:
+    git clone https://github.com/JuanCaychoPaucar/MinimarketDjango.git (lo que copiamos en el paso 8)
+
+
+
+
+
+VISUAL STUDIO CODE
+1) Detenemos el servicio
+2) En la carpeta principal de la aplicacion Minimarket, abrimos una terminal
+3) Nos debe de mostrar la siguiente ruta: (virtualback4) PS D:\TECSUP\VIRTUAL BACK 4\Semana4\dia3\Minimarket>
+4) Ejecutamos: pip freeze > requirements.txt
+5) Revelamos en el explorador la carpeta principal de nuestro proyecto
+6) Copiamos todo el contenido de la carpeta que tiene la ruta: (virtualback4) PS D:\TECSUP\VIRTUAL BACK 4\Semana4\dia3\Minimarket>
+8) Lo pegamos dentro de nuestra carpeta creada en la clonacion de nuestro repositorio
+9) Dentro de dicha carpeta, abrimos una terminar cmd
+10) Ejecutamos el comando: code .
+11) Nos abrira una nueva ventana de vscode
+
+
+TRABAJANDO EN NUESTRO REPOSITORIO
+1) Ya en vscode, abrimso el archivo requirements.txt
+2) Al final, agregamos:
+                        gunicorn
+                        whitenoise
+3) Luego al archivo settings.py y realizamos lo siguiente para que pueda renderizar nuestros archivos css
+    Agregamos al final de:
+        MIDDLEWARE = [
+            (texto que ya estaba)
+            'whitenoise.middleware.WhiteNoiseMiddleware',        <= esto agregamos
+        ]
+4) Crear archivo Procfile y agregar lo siguiente:
+    web: gunicorn Minimarket.wsgi
+5) Crear archivo runtime.txt y agregar lo siguiente:
+    python-3.9.0
+6) Abrimos una terminal y realizamos los pasos para pushear a nuestro repositorio
+
+
+EN HEROKU
+1) Creamos una nueva aplicacion, clic en New / Create new app
+2) En App name colocamos: minimarket-virtual-juan
+3) Se abre una nueva ventana de Deploy
+4) En Deployment method, seleccionar GitHub
+5) La primera vez nos pide autenticar y aceptar
+6) Luego, en Connect con GitHub, buscamos nuestro repositorio, en este caso: MinimarketDjango y clic en search
+7) Clic en Connect
+8) En Automatic deploys, verificamos que este marcado Choose a branch to deploy => main
+9) Clic en el boton Enable Automatic Deploys
+10) En Manual deploy, verificamos que este marcado Choose a branch to deploy => main
+11) Clic en el boton Deploy Branch
+
+
+

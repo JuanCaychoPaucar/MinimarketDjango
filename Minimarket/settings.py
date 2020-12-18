@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'Minimarket.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Minimarket4',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1', #localhost
+        'NAME': 't4iyuqm205uv4p2u',
+        'USER': 'hde89m091pljcpcp',
+        'PASSWORD': 'rmyx48v0662zqg8n',
+        'HOST': 'z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', #localhost
         'PORT': '3306'
     }
 }
@@ -127,3 +127,4 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

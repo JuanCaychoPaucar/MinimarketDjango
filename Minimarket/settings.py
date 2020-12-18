@@ -76,11 +76,12 @@ WSGI_APPLICATION = 'Minimarket.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.1/ref/databases/#mysql-notes
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'minimarket4',
+        'NAME': 'Minimarket4',
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1', #localhost

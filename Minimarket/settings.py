@@ -25,7 +25,7 @@ SECRET_KEY = 'p9qbt#&mda#9k83ar5)(*z$te(ft&k$%ems)9zn!f6cz!17d+8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['minimarket-virtual-juan.herokuapp.com']
 
 
 # Application definition

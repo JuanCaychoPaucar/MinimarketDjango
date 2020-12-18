@@ -19,39 +19,6 @@ GITHUB
 
 
 
-
-
-VISUAL STUDIO CODE
-1) Detenemos el servicio
-2) En la carpeta principal de la aplicacion Minimarket, abrimos una terminal
-3) Nos debe de mostrar la siguiente ruta: (virtualback4) PS D:\TECSUP\VIRTUAL BACK 4\Semana4\dia3\Minimarket>
-4) Ejecutamos: pip freeze > requirements.txt
-5) Revelamos en el explorador la carpeta principal de nuestro proyecto
-6) Copiamos todo el contenido de la carpeta que tiene la ruta: (virtualback4) PS D:\TECSUP\VIRTUAL BACK 4\Semana4\dia3\Minimarket>
-8) Lo pegamos dentro de nuestra carpeta creada en la clonacion de nuestro repositorio
-9) Dentro de dicha carpeta, abrimos una terminar cmd
-10) Ejecutamos el comando: code .
-11) Nos abrira una nueva ventana de vscode
-
-
-TRABAJANDO EN NUESTRO REPOSITORIO
-1) Ya en vscode, abrimso el archivo requirements.txt
-2) Al final, agregamos:
-                        gunicorn
-                        whitenoise
-3) Luego al archivo settings.py y realizamos lo siguiente para que pueda renderizar nuestros archivos css
-    Agregamos al final de:
-        MIDDLEWARE = [
-            (texto que ya estaba)
-            'whitenoise.middleware.WhiteNoiseMiddleware',        <= esto agregamos
-        ]
-4) Crear archivo Procfile y agregar lo siguiente:
-    web: gunicorn Minimarket.wsgi
-5) Crear archivo runtime.txt y agregar lo siguiente:
-    python-3.9.0
-6) Abrimos una terminal y realizamos los pasos para pushear a nuestro repositorio
-
-
 EN HEROKU
 1) Creamos una nueva aplicacion, clic en New / Create new app
 2) En App name colocamos: minimarket-virtual-juan
@@ -64,6 +31,100 @@ EN HEROKU
 9) Clic en el boton Enable Automatic Deploys
 10) En Manual deploy, verificamos que este marcado Choose a branch to deploy => main
 11) Clic en el boton Deploy Branch
+    Nota: Nos va a dar error, pero por el momento solo estamos asociando Github con Heroku
+12) Crearemos nuestra BD
+13) Clic en Resources, luego en Find more add-ons
+14) Seleccionamos JawsDB MySQL y lo instalamos
+15) Nos aparecera en nuestra lista de Resources, le damos clic
+16) Mostrara las configuraciones para nuestra base de datos, que agregaremos luego. No cerrar esta ventana
 
 
 
+MYSQL WORKBENCH
+1) Creamos una nueva coneccion y colocamos la informacion proporcionada por Heroku
+2) Verificamos que podamos acceder correctamente
+
+
+
+VISUAL STUDIO CODE
+Nos dirigimos a nuestro proyecto ORIGINAL
+1) Detenemos el servicio
+2) En la carpeta principal de la aplicacion Minimarket, abrimos una terminal
+3) Nos debe de mostrar la siguiente ruta: (virtualback4) PS D:\TECSUP\VIRTUAL BACK 4\Semana4\dia3\Minimarket>
+4) Ejecutamos: pip freeze > requirements.txt
+5) Revelamos en el explorador la carpeta principal de nuestro proyecto
+6) Copiamos todo el contenido de la carpeta que tiene la ruta: (virtualback4) PS D:\TECSUP\VIRTUAL BACK 4\Semana4\dia3\Minimarket>
+8) Lo pegamos dentro de nuestra carpeta creada en la clonacion de nuestro repositorio
+9) Dentro de dicha carpeta, abrimos una terminar cmd
+10) Ejecutamos el comando: code .
+11) Nos abrira una nueva ventana de vscode
+
+
+
+TRABAJANDO EN NUESTRO REPOSITORIO
+1) Ya en vscode, abrimos el archivo requirements.txt
+2) Al final, agregamos:
+                        gunicorn
+                        whitenoise
+3) Luego al archivo settings.py
+    3.1) Importamos: import os
+
+    3.2) ALLOWED_HOSTS = ['minimarket-virtual-juan.herokuapp.com']    <= colocamos el nombre de nuestra app creada en Heroku
+
+    3.3) Agregamos al final de:
+            INSTALLED_APPS = [
+                (texto que ya estaba)
+                'drf_yasg',
+            ]
+
+    3.4) Agregamos al final de:
+            MIDDLEWARE = [
+                (texto que ya estaba)
+                'whitenoise.middleware.WhiteNoiseMiddleware',        <= agregamos lo siguiente para que pueda renderizar nuestros archivos css
+            ]
+
+    3.5) Modificamos: (usaremos la informacion proporcionada por Heroku, cuando creamos la BD)
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.mysql',
+                    'NAME': 'Database',
+                    'USER': 'Username',
+                    'PASSWORD': 'Password',
+                    'HOST': 'Host'
+                    'PORT': '3306'
+                }
+            }
+
+    3.6) Buscamos:
+            STATIC_URL = '/static/'
+
+         Debajo de ello, agregamos:
+            STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+4) Crear archivo Procfile y agregar lo siguiente:
+    web: gunicorn Minimarket.wsgi
+5) Crear archivo runtime.txt y agregar lo siguiente:
+    python-3.9.0
+6) Realizamos los pasos para seleccionar nuestro entorno virtual con el que trabajamos originalmente.
+   Nos debe de mostrar lo siguiente si todo esta correcto:
+        (virtualback4) PS D:\TECSUP\HEROKU\MinimarketDjango>
+7) Se nos debe de crear una carpeta .vscode y dentro un archivo settings.json
+8) Abrimos el archivo settings.json y debe de quedar de la siguiente manera:
+        {
+            "python.pythonPath": "c:\\Users\\nombre_usuario\\virtualback4\\Scripts\\python.exe",
+            "python.linting.pylintArgs": [
+                "--load-plugins=pylint_django, pylint_celery"  // para evitar que me de el problema de objeto de los modelos de django
+            ],
+        }
+
+9) Vamos a realizar las migraciones
+    py manage.py migrate
+10) Verificamos que se hayan realizado las migraciones
+    py manage.py showmigrations
+11) Si todo esta marcado, cerramos la terminal
+12) Abrimos una nueva terminal en el directorio principal y realizamos los pasos para pushear a nuestro repositorio en GitHub
+13) Como nuestro repositorio en GitHub esta viculado con Heroku, podemos ver el deploy en la pagina de Heroku, en Activity
+
+MATERIAL DE APOYO:
+https://www.youtube.com/watch?v=GMbVzl_aLxM
